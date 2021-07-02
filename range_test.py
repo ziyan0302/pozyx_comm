@@ -32,7 +32,7 @@ class ReadyToRange(object):
 			error_code = SingleRegister()
 			status = self.pozyx.getErrorCode(error_code)
 			if status == POZYX_SUCCESS:
-				print("error ranging, local %s" % self.pozyx.getErrorCode(error_code))
+				print("\033[93m error ranging, local %s\033[0m" % self.pozyx.getErrorCode(error_code))
 			else:
 				print("ERROR Ranging, couldn't retrieve local error")
 
