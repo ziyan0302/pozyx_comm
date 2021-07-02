@@ -1,0 +1,3 @@
+[submodule "Pozyx-Python-library"]
+	path = Pozyx-Python-library
+	url = git@github.com:ziyan0302/Pozyx-Python-library.git
