@@ -21,6 +21,8 @@ class ReadyToRange(object):
 		else:
 			for device_id in [None, self.remote_id, self.destination_id]:
 				self.pozyx.printDeviceInfo(device_id)
+		
+
 
 	def loop(self):
 		device_range = DeviceRange()
@@ -35,11 +37,12 @@ class ReadyToRange(object):
 				print("\033[93m error ranging, local %s\033[0m" % self.pozyx.getErrorCode(error_code))
 			else:
 				print("ERROR Ranging, couldn't retrieve local error")
-
+	
+	
 if __name__ == "__main__":
-	check_pypozyx_version = True
-	if check_pypozyx_version:
-		perform_latest_version_check()
+	# check_pypozyx_version = True
+	# if check_pypozyx_version:
+	# 	perform_latest_version_check()
 	
 	serial_port = get_first_pozyx_serial_port()
 	if serial_port is None:
@@ -59,7 +62,7 @@ if __name__ == "__main__":
 	pozyx = PozyxSerial(serial_port)
 	r = ReadyToRange(pozyx, destination_id, range_step_mm, ranging_protocol, remote_id)
 
-	# r.setup()
+	r.setup()
 	while True:
 		r.loop()
 		time.sleep(0.5)
