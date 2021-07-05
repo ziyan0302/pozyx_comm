@@ -3,7 +3,13 @@ from pypozyx import (PozyxSerial, PozyxConstants, version,
 
 from pypozyx.tools.version_check import perform_latest_version_check
 import time
-
+'''
+1. This script can measure the distance between remote_pozyx and destination_pozyx.
+If the remote_id is None, this means to measure the distance between 
+the pozyx connected to computer and destination_pozyx.
+2. This is the version with led. Farther two pozyx are, more leds would light on. 
+3. The default led setting would be reset to zero in setup(). All leds would slake.
+'''
 class ReadyToRange(object):
 	def __init__(self, pozyx, destination_id, range_step_mm=1000, protocol=PozyxConstants.RANGE_PROTOCOL_PRECISION,\
 		remote_id=None):
