@@ -4,8 +4,7 @@ from pypozyx import (PozyxSerial, PozyxConstants, version,
 from pypozyx.tools.version_check import perform_latest_version_check
 import time
 '''
-This script can measure the distances between pozyx_computer and destination_pozyxs.
-
+ This script can measure the distances between pozyx_computer and destination_pozyxs.
 '''
 class ReadyToRange(object):
 	def __init__(self, pozyx, destination_id, range_step_mm=1000, protocol=PozyxConstants.RANGE_PROTOCOL_PRECISION,\
@@ -29,14 +28,14 @@ class ReadyToRange(object):
 		for device_id in self.devices:
 			status = self.pozyx.doRanging(device_id, device_range, self.remote_id)
 			if status == POZYX_SUCCESS:
-				print(device_id," : ",device_range)
+				print(hex(device_id)," : ",device_range)
 			else:
 				error_code = SingleRegister()
 				status = self.pozyx.getErrorCode(error_code)
-			if status == POZYX_SUCCESS:
-				print("\033[93m error ranging, local %s\033[0m" % self.pozyx.getErrorCode(error_code))
-			else:
-				print("ERROR Ranging, couldn't retrieve local error")
+				if status == POZYX_SUCCESS:
+					print("\033[93m error ranging, local %s\033[0m" % self.pozyx.getErrorCode(error_code))
+				else:
+					print("ERROR Ranging, couldn't retrieve local error")
         
 	
 if __name__ == "__main__":
